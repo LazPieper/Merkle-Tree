@@ -1,7 +1,10 @@
+#include <iostream>
+#include <iomanip>
+#include <sstream>
 #include <string>
 #include <vector>
 // considering the complexity of building out SHA-256, I'm using a library from OpenSSL
-// link: https://github.com/openssl/openssl/blob/master/crypto/sha/sha256.c
+// source: https://github.com/openssl/openssl/blob/master/crypto/sha/sha256.c
 #include <openssl/sha.h>
 
 using namespace std;
@@ -33,13 +36,13 @@ class MKT {
         // searches the tree and returns the node with the given hash value
         mkt_node* get_node(mkt_node* subt, string hash);
         // sets the root node
-        void set_root(mkt_node** new_node);
+        void set_root(mkt_node* new_node);
         // returns the root pointer
         mkt_node* get_root();
         // a vector containing the hash values of each node
-        void to_vector(mkt_node* subtr, vector<string>& vec);
+        void to_vector(mkt_node* subt, vector<string>& vec);
         // using SHA-256 to produce the hash value
-        string hash_function()
+        string sha256(const string& data);
 
     private:
         // pointer to the root node
