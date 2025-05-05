@@ -23,9 +23,9 @@ class MKT {
         MKT();
         // destructor
         ~MKT();
-        // initialize a new node with its hash value
+        // initializes a new node with its hash value
         mkt_node* init_node(string hash);
-        // insert function for inserting a new node into the appropriate positiion within the tree
+        // inserts new node
         void insert(mkt_node* new_node);
         // creates a new node with a hash value
         void insert_data(string data);
@@ -37,8 +37,6 @@ class MKT {
         int size(mkt_node* subt);
         // searches the tree and returns the node with the given hash value
         mkt_node* get_node(mkt_node* subt, string hash);
-        // sets the root node
-        void set_root(mkt_node* new_node);
         // returns the root pointer
         mkt_node* get_root();
         // a vector containing the hash values of each node

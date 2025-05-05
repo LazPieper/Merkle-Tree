@@ -137,11 +137,6 @@ mkt_node* MKT::get_node(mkt_node* subt, string hash) {
     return nullptr;
 }
 
-void MKT::set_root(mkt_node* new_node) {
-    // nothing crazy
-    root = new_node;
-}
-
 mkt_node* MKT::get_root() {
     // nothing crazy
     return root;
