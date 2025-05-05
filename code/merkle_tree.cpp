@@ -9,11 +9,11 @@ MKT::~MKT() {
     
 }
 
-mkt_node* MKT::init_node(string hash) {
+mkt_node* MKT::init_node(string data) {
     // creates a new node pointer
     mkt_node* new_node = new mkt_node;
-    // inserts hash
-    new_node->hash = hash;
+    // computes and inserts hash
+    new_node->hash = sha256(data);
     // initializes each of its children as null pointers
     new_node->left = nullptr;
     new_node->right = nullptr;
@@ -22,6 +22,8 @@ mkt_node* MKT::init_node(string hash) {
 }
 
 void MKT::insert(mkt_node* new_node) {
+        // initializes parent node
+    mkt_node* parent = nullptr;
     // if no root exists, the new node will become the root
     if (root == nullptr) { 
         root = new_node; 
@@ -43,6 +45,8 @@ void MKT::insert(mkt_node* new_node) {
             if (current_node->left == nullptr) {
                 // if so, places the new node there
                 current_node->left = new_node;
+                // updates parent
+                parent = current_node;
                 return;
             }
             // if not, adds the left child to the queue
@@ -51,20 +55,52 @@ void MKT::insert(mkt_node* new_node) {
             if (current_node->right == nullptr) {
                 // if so, places the new node there
                 current_node->right = new_node;
+                // updates parent
+                parent = current_node;
                 return;
             }
             // if not, adds the right child to queue
             else { Q.push(current_node->right); }
         }
+        // updates parent node's hash to have the combined hashes of its children
+        if (parent != nullptr) {
+            // creates an empty string for children's hashes to be input
+            string combined = "";
+            // checks if there's a left child and if so, adds the left child's hash to the string
+            if (parent->left) { combined += parent->left->hash; }
+            // checks if there's a right child and if so, adds the right child's hash to the string
+            if (parent->right) { combined += parent->right->hash; }
+            // hashes the combined hashes
+            parent->hash = sha256(combined);
+        }
     }
 }
 
-void MKT::insert_hash(string hash) {
-    // initializes the new node with the hash
-    mkt_node* new_node = init_node(hash);
+void MKT::insert_data(string data) {
+    // initializes the new node with its data
+    mkt_node* new_node = init_node(data);
     // inserts the node into the merkle tree
     insert(new_node);
     return;
+}
+
+void MKT::build_tree(mkt_node* subt) {
+    // checks to see if empty
+     if (subt == nullptr) { 
+        return;
+    }
+    // processes left subtree first through recursion
+    build_tree(subt->left);
+    // process right subtree next through recursion
+    build_tree(subt->right);
+    // updates the parent node after all else is updated below it
+    // checks to see if parent node (subtree) has at least one child
+    if (subt->left != nullptr || subt->right != nullptr) {
+        string combined = "";
+        if (subt->left) { combined += subt->left->hash; }
+        if (subt->right) { combined += subt->right->hash; }
+        subt->hash = sha256(combined);
+    }
 }
 
 bool MKT::contains(mkt_node* subt, string hash) {

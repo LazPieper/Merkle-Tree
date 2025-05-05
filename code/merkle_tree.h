@@ -28,7 +28,9 @@ class MKT {
         // insert function for inserting a new node into the appropriate positiion within the tree
         void insert(mkt_node* new_node);
         // creates a new node with a hash value
-        void insert_hash(string hash);
+        void insert_data(string data);
+        // uses postorder traversal to update ancestors across the tree after adding a new node (since they are hashed based on their children)
+        void build_tree(mkt_node* subt);
         // checks to see if the hash value exists within the tree, starting at the subtree
         bool contains(mkt_node* subt, string hash);
         // returns the number of nodes in the tree, starting at the subtree
