@@ -12,7 +12,7 @@ int main() {
     vector<string> transactions = {
         "0x1233252 sends 1 bitcoin to 0x456352", 
         "0x432235 sends 6 bitcoin to 0x343352", 
-        "0x435634 sends 34 bitcoin to ox23453254", 
+        "0x435634 sends 34 bitcoin to 0x23453254", 
         "0x2342354 sends 43 bitcoin to 0x904375438", 
         "0x8329057 sends 905 bitcoin to 0x230954",
         "0x340543045 sends 324 bitcoin to 0x38457345",
@@ -35,7 +35,7 @@ int main() {
     merkle_tree.to_vector(root, Bitcoin);
     cout << "All hashes in the Bitcoin blockchain:" << endl;
     for (int i = 0; i < Bitcoin.size(); i++) {
-        cout << "Hash " << i << ": " << Bitcoin[i] << " -> " << endl;
+        cout << "Hash " << i << ": " << Bitcoin[i] << endl;
     }
     return 0;
 }
