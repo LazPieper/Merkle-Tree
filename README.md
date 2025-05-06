@@ -25,7 +25,9 @@ The repository include a test file (`mkt_tests.cpp`) that demonstrates the diffe
 
 ### OpenSSL Sources
 The MKT includes the OpenSSL library for SHA-256.
+
 Library source for `#include <openssl/sha.h>`: https://github.com/openssl/openssl/blob/master/crypto/sha/sha256.c
+
 Implementation source: https://terminalroot.com/how-to-generate-sha256-hash-with-cpp-and-openssl/
 
 ### How to Build and Run Tests
