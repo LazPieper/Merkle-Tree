@@ -1,4 +1,4 @@
-#include "merkle_tree.h"
+#include "../code/merkle_tree.h"
 #include <iostream>
 #include <vector>
 #include <string>
