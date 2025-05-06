@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <sstream>
 #include <string>
+#include <queue>
 #include <vector>
 // considering the complexity of building out SHA-256, I'm using a library from OpenSSL
 // source: https://github.com/openssl/openssl/blob/master/crypto/sha/sha256.c

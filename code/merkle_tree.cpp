@@ -1,4 +1,4 @@
-#include "merkle_tree.h"
+#include "../code/merkle_tree.h"
 
 MKT::MKT() {
     // initalize pointer to root
@@ -113,7 +113,6 @@ bool MKT::contains(mkt_node* subt, string hash) {
 }
 
 int MKT::size(mkt_node* subt) {
-    int size = 0;
     // if we start where there is no node, then the size is simply 0
     if (subt == nullptr) { return 0; }
     // if the initial node exists then we know there's at least 1 node
