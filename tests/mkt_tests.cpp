@@ -35,7 +35,7 @@ int main() {
     merkle_tree.to_vector(root, Bitcoin);
     cout << "All hashes in the Bitcoin blockchain:" << endl;
     for (int i = 0; i < Bitcoin.size(); i++) {
-        cout << "Hash " << i << ": " << Bitcoin[i] << " -> " endl;
+        cout << "Hash " << i << ": " << Bitcoin[i] << " -> " << endl;
     }
     return 0;
 }
